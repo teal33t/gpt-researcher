@@ -23,7 +23,7 @@ const Header = ({ loading, isStopped, showResult, onStop, onNewResearch, isCopil
           <a href="/">
             <img
               src="/img/gptr-logo.png"
-              alt="logo"
+              alt="ADR System"
               width={60}
               height={60}
               className="lg:h-16 lg:w-16"

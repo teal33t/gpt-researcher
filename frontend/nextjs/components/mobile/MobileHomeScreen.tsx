@@ -137,13 +137,13 @@ export default function MobileHomeScreen({
         <div className="flex justify-center mb-3">
           <img
             src="/img/gptr-logo.png"
-            alt="GPT Researcher"
+            alt="ADR System"
             width={60}
             height={60}
             className="rounded-xl"
           />
         </div>
-        <p className="text-gray-400 text-sm">Say Hello to GPT Researcher, your AI partner for instant insights and comprehensive research</p>
+        <p className="text-gray-400 text-sm">Welcome to ADR System. Enter a topic to start your research.</p>
       </div>
 
       {/* Search Box */}

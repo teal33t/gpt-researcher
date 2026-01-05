@@ -24,7 +24,7 @@ const Hero: FC<THeroProps> = ({
         {/* Welcome Section */}
         <div className="text-center mb-8 sm:mb-10">
           <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-3">
-            Research Dashboard
+            ADR System
           </h1>
           <p className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto">
             Enter your research topic below. The AI agent will search, analyze, and create a report for you.
