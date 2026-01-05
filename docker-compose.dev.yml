@@ -69,5 +69,3 @@ services:
       - 3001:3000
     profiles: ["discord"]
     restart: always
-
-

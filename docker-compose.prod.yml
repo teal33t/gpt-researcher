@@ -1,41 +1,25 @@
 services:
-  adr-researcher:
-    container_name: adr-backend
-    build: ./
+  adr-fullstack:
+    container_name: adr-system
+    build:
+      dockerfile: Dockerfile.fullstack
+      context: ./
     environment: 
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_BASE_URL: ${OPENAI_BASE_URL}
       TAVILY_API_KEY: ${TAVILY_API_KEY}
       LANGCHAIN_API_KEY: ${LANGCHAIN_API_KEY}
       LOGGING_LEVEL: INFO
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID}
+      NEXT_PUBLIC_GPTR_API_URL: ${NEXT_PUBLIC_GPTR_API_URL}
     volumes:
       - ${PWD}/my-docs:/usr/src/app/my-docs:rw
       - ${PWD}/outputs:/usr/src/app/outputs:rw
       - ${PWD}/logs:/usr/src/app/logs:rw
-    user: root
-    restart: always
-    ports:
-      - 8001:8000
-      
-  adr-nextjs:
-    container_name: adr-frontend
-    stdin_open: true
-    environment:
-      CHOKIDAR_USEPOLLING: "true"
-      LOGGING_LEVEL: INFO
-      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${NEXT_PUBLIC_GA_MEASUREMENT_ID}
-      NEXT_PUBLIC_GPTR_API_URL: ${NEXT_PUBLIC_GPTR_API_URL}
-    build:
-      dockerfile: Dockerfile.dev
-      context: frontend/nextjs
-    volumes:
-      - /app/node_modules
-      - ./frontend/nextjs:/app
-      - ./frontend/nextjs/.next:/app/.next
-      - ./outputs:/app/outputs
     restart: always
     ports:
       - 3000:3000
+      - 8000:8000
 
   adr-researcher-tests:
     container_name: adr-tests
@@ -69,5 +53,3 @@ services:
       - 3001:3000
     profiles: ["discord"]
     restart: always
-
-
