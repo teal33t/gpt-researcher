@@ -13,7 +13,6 @@ import { toast } from "react-hot-toast";
 import { v4 as uuidv4 } from 'uuid';
 
 import Hero from "@/components/Hero";
-import AdvancedDashboard from "@/components/Dashboard/AdvancedDashboard";
 import ResearchPageLayout from "@/components/layouts/ResearchPageLayout";
 import CopilotLayout from "@/components/layouts/CopilotLayout";
 import ResearchContent from "@/components/research/ResearchContent";
@@ -76,7 +75,6 @@ export default function Home() {
   const [currentResearchId, setCurrentResearchId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isProcessingChat, setIsProcessingChat] = useState(false);
-  const [usePersianDashboard, setUsePersianDashboard] = useState(true);
 
   // Use our custom scroll handler
   const { showScrollButton, scrollToBottom } = useScrollHandler(mainContentRef);
@@ -905,49 +903,36 @@ export default function Home() {
         })
       ) : !showResult ? (
         // Desktop view - home page
-        usePersianDashboard ? (
-          <AdvancedDashboard
-            promptValue={promptValue}
-            setPromptValue={setPromptValue}
-            handleDisplayResult={handleDisplayResult}
-            chatBoxSettings={chatBoxSettings}
-            setChatBoxSettings={setChatBoxSettings}
-            history={history}
-            onSelectResearch={handleSelectResearch}
-            onDeleteResearch={deleteResearch}
-          />
-        ) : (
-          getAppropriateLayout({
-            loading,
-            isStopped,
-            showResult,
-            onStop: handleStopResearch,
-            onNewResearch: handleStartNewResearch,
-            chatBoxSettings,
-            setChatBoxSettings,
-            mainContentRef,
-            showScrollButton,
-            onScrollToBottom: scrollToBottom,
-            children: (
-              <>
-                <ResearchSidebar
-                  history={history}
-                  onSelectResearch={handleSelectResearch}
-                  onNewResearch={handleStartNewResearch}
-                  onDeleteResearch={deleteResearch}
-                  isOpen={sidebarOpen}
-                  toggleSidebar={toggleSidebar}
-                />
-                
-                <Hero
-                  promptValue={promptValue}
-                  setPromptValue={setPromptValue}
-                  handleDisplayResult={handleDisplayResult}
-                />
-              </>
-            )
-          })
-        )
+        getAppropriateLayout({
+          loading,
+          isStopped,
+          showResult,
+          onStop: handleStopResearch,
+          onNewResearch: handleStartNewResearch,
+          chatBoxSettings,
+          setChatBoxSettings,
+          mainContentRef,
+          showScrollButton,
+          onScrollToBottom: scrollToBottom,
+          children: (
+            <>
+              <ResearchSidebar
+                history={history}
+                onSelectResearch={handleSelectResearch}
+                onNewResearch={handleStartNewResearch}
+                onDeleteResearch={deleteResearch}
+                isOpen={sidebarOpen}
+                toggleSidebar={toggleSidebar}
+              />
+              
+              <Hero
+                promptValue={promptValue}
+                setPromptValue={setPromptValue}
+                handleDisplayResult={handleDisplayResult}
+              />
+            </>
+          )
+        })
       ) : (
         // Desktop view - research results
         getAppropriateLayout({

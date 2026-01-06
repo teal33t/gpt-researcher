@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ResearchPageLayout from '@/components/layouts/ResearchPageLayout';
 import CopilotLayout from '@/components/layouts/CopilotLayout';
 import MobileLayout from '@/components/layouts/MobileLayout';
@@ -37,8 +37,23 @@ export const getAppropriateLayout = ({
   toggleSidebar,
   isProcessingChat = false
 }: LayoutProps) => {
-  // Check if we're on mobile - use window width directly without hooks
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if we're on mobile on client-side
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
   
   // If on mobile, use the mobile layout
   if (isMobile) {

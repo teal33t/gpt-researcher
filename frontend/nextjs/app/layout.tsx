@@ -8,23 +8,6 @@ import Script from 'next/script';
 
 const inter = Lexend({ subsets: ["latin"] });
 
-// Load Vazir font for Persian text
-const vazirFont = {
-  fontFamily: 'Vazir',
-  src: [
-    {
-      path: 'https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: 'https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-};
-
 let title = "ADR System";
 let description =
   "Advanced Deep Researcher - AI agent that conducts web and local research on any topic and creates detailed reports with citations.";
@@ -77,22 +60,16 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html className="gptr-root" lang="fa" dir="rtl" suppressHydrationWarning>
+    <html className="gptr-root" lang="en" suppressHydrationWarning>
       <head>
         <PlausibleProvider domain="localhost:3000" />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="/img/gptr-black-logo.png" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css"
-        />
       </head>
       <body
-        className={`app-container light-theme flex min-h-screen flex-col justify-between`}
-        style={{ fontFamily: 'Vazir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
+        className={`app-container ${inter.className} flex min-h-screen flex-col justify-between`}
         suppressHydrationWarning
       >
         <ResearchHistoryProvider>
