@@ -24,7 +24,7 @@ tavily-python>=0.7.12
 
 # Output formats
 aiofiles>=23.2.1
-mistune>=3.0.2
+mistune
 md2pdf>=1.0.1
 python-docx>=1.1.0
 htmldocx>=0.0.6
